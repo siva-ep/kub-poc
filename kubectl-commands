@@ -1,0 +1,24 @@
+   32  sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu kubelet=1.12.2-00 kubeadm=1.12.2-00 kubectl=1.12.2-00 kubernetes-cni=0.6.0-00
+   33  sudo apt-mark hold docker-ce kubelet kubeadm kubectl kubernetes-cni
+   43  9f169fc303aa380db930c07f0d1b680e3b34cba1edf3dd270a8kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+   44  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+   48  kubectl cluster-info | grep master
+   50  kubectl
+   52  kubectl get pods
+   55  kubectl get nodes
+   76  kubectl get pods
+   86  kubectl get pods -n kube-ssytem
+   87  kubectl get pods -n kube-system
+   92  kubectl get nodes
+   93  kubectl version
+   97  kubectl run siva --image=siva1258/kube-helm-poc:0.0.1-SNAPSHOT --port=8080
+   99  kubectl get pods
+  100  kubectl get deployments
+  102  kubectl edit pod siva-594d758778-52d88
+  103  history | grep kubectl
+  104  history | grep kubectl > kubectl-commands
+  105  kubectl expose deployment siva --type=NodePort
+  106  kubectl get svc
+  107  kubectl get pods
+  108  kubectl describe pod siva-594d758778-52d88 | grep node
+  111  history | grep kubectl > kubectl-commands
