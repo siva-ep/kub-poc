@@ -17,6 +17,7 @@ pipeline
                 sh '''
                 cd /home/sivatheja_pv/kub-poc
                 mvn clean package
+                war_file=`cd target/;ls | grep websocket;head -1;`
                 '''
             }
         }
@@ -38,13 +39,13 @@ pipeline
             steps{
                 sh '''
                 cd /home/sivatheja_pv/kub-poc
-                sudo docker build -t siva1258/front-end-1-${BUILD_NUMBER} .
+                sudo docker build -t siva1258/websocket-${BUILD_NUMBER} .
                 '''
             }
         }
         stage('docker image push'){
             steps{
-                sh 'sudo docker push siva1258/front-end-1-${BUILD_NUMBER}'
+                sh 'sudo docker push siva1258/websocket-${BUILD_NUMBER}'
             }
         }
         stage('kubernetes'){
