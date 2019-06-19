@@ -26,7 +26,7 @@ pipeline
                 sh '''
                 cd /home/sivatheja_pv/kub-poc
                 sed '10d' Dockerfile
-                sed '9 aaARG JAR_FILE=target/$war-file' Dockerfile' Dockerfile
+                sed '9 aARG JAR_FILE=target/$war-file' Dockerfile' Dockerfile
                 '''
             }
         }
