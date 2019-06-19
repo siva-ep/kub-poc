@@ -18,6 +18,7 @@ pipeline
                 cd /home/sivatheja_pv/kub-poc
                 mvn clean package
                 war_file=`cd target/;ls | grep websocket;head -1;`
+                echo $war_file
                 '''
             }
         }
@@ -26,7 +27,7 @@ pipeline
                 sh '''
                 cd /home/sivatheja_pv/kub-poc
                 sed '10d' Dockerfile
-                sed '9 aARG JAR_FILE=target/$war-file' Dockerfile' Dockerfile
+                sed '9 aARG JAR_FILE=target/$war_file' Dockerfile
                 '''
             }
         }
