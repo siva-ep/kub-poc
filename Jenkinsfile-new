@@ -6,28 +6,45 @@ pipeline
             steps {
                sh '''
                
-               cd /home/reddisekhara_n
-               rm -rf front-end-demo
-               git clone https://github.com/nagarajui7/front-end-demo.git
+               cd /home/sivatheja_pv
+               rm -rf kub-poc
+               git clone https://github.com/siva-ep/kub-poc.git
                '''
+            }
+        }
+        stage('maven'){
+            steps{
+                sh '''
+                cd /home/sivatheja_pv/kub-poc
+                mvn clean package
+                '''
+            }
+        }
+        stage('replace'){
+            steps{
+                sh '''
+                cd /home/sivatheja_pv/kub-poc
+                sed '10d' Dockerfile
+                sed '9 aaARG JAR_FILE=target/$war-file' Dockerfile' Dockerfile
+                '''
             }
         }
         stage('docker login'){
             steps{
-                sh 'sudo docker login --username nagarajubatchu1 --password password'
+                sh 'sudo docker login --username siva1258 --password Anusha@123'
             }
         }
         stage('docker image creation'){
             steps{
                 sh '''
-                cd /home/reddisekhara_n/front-end-demo/
-                sudo docker build -t nagarajubatchu1/front-end-1-${BUILD_NUMBER} .
+                cd /home/sivatheja_pv/kub-poc
+                sudo docker build -t siva1258/front-end-1-${BUILD_NUMBER} .
                 '''
             }
         }
         stage('docker image push'){
             steps{
-                sh 'sudo docker push nagarajubatchu1/front-end-1-${BUILD_NUMBER}'
+                sh 'sudo docker push siva1258/front-end-1-${BUILD_NUMBER}'
             }
         }
         stage('kubernetes'){
