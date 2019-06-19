@@ -14,7 +14,7 @@ pipeline
         }
         stage('docker login'){
             steps{
-                sh 'sudo docker login --username nagarajubatchu1 --password b@TChU!779263'
+                sh 'sudo docker login --username nagarajubatchu1 --password password'
             }
         }
         stage('docker image creation'){
