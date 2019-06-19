@@ -7,7 +7,7 @@ pipeline
                sh '''
                
                cd /home/sivatheja_pv
-               rm -rf kub-poc
+               #rm -rf kub-poc
                git clone https://github.com/siva-ep/kub-poc.git
                '''
             }
