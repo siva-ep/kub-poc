@@ -1,1 +1,28 @@
-stage
+pipeline {
+    stages {
+        stage('Clone') {
+            steps {
+                echo "Cloning the Repo"
+                git clone 
+            }
+        }
+        stage('Build') { 
+            steps {
+                echo "Building the war file"
+                mvn clean package
+                war_file=`cd repo-name/target;ls;head -1`
+                echo $war-file
+            }
+        }
+        stage('Replace'){
+            steps {
+               cd repo
+               sed '10d' Dockerfile
+               sed '9 aARG JAR_FILE=target/$war-file' Dockerfile
+               docker build -t spring:$war_file .
+               docker tag spring:$war_file siva1258/spring:$war_file
+               docker push -u siva1258 -p Anusha@123 siva1258/spring:$war_file
+            }
+        }
+    }
+}
