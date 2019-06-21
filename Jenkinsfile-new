@@ -56,6 +56,8 @@ pipeline
             sudo kubectl run siva --image=siva1258/websocket-${BUILD_NUMBER}T --port=8080
             kubectl expose deployment siva --type=NodePort
             '''
+            }
+            }
     }
     
 }
