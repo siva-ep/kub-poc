@@ -40,7 +40,7 @@ pipeline
             steps{
                 sh '''
                 cd /home/sivatheja_pv/kub-poc
-                sudo docker build -t siva1258/websocket-${BUILD_NUMBER} .
+                sudo docker build -t siva1258/websocket:${BUILD_NUMBER} .
                 '''
             }
         }
@@ -49,7 +49,16 @@ pipeline
                 sh 'sudo docker push siva1258/websocket-${BUILD_NUMBER}'
             }
         }
-      
+        stage('helm chart') {
+            steps {
+                sh '''
+                sudo sed -i '8d' /home/sivatheja_pv/spring-sample/values.yaml
+                sudo sed -i "8i\\  repository: siva1258/websocket" values.yaml
+                sudo sed -i '9d' /home/sivatheja_pv/spring-sample/values.yaml
+                sudo sed -i "9i\\  tag: ${BUILD_NUMBER}" values.yaml
+                helm install -n spring-1 ./home/sivatheja_pv/spring-sample/
+                '''
+            }
        
     }
     
