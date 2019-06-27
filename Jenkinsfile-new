@@ -59,6 +59,7 @@ pipeline
                 helm install -n spring-1 ./home/sivatheja_pv/spring-sample/
                 '''
             }
+            }
        
     }
     
