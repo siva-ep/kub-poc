@@ -49,17 +49,7 @@ pipeline
                 sh 'sudo docker push siva1258/websocket:${BUILD_NUMBER}'
             }
         }
-        stage('helm chart') {
-            steps {
-                sh '''
-                sudo sed -i '8d' /home/sivatheja_pv/spring-sample/values.yaml
-                sudo sed -i '8iline3'  "repository: siva1258/websocket" values.yaml
-                sudo sed -i '9d' /home/sivatheja_pv/spring-sample/values.yaml
-                sudo sed -i "9i\\  tag: ${BUILD_NUMBER}" values.yaml
-                helm install -n spring-1 ./home/sivatheja_pv/spring-sample/
-                '''
-            }
-            }
+        
        
     }
     
