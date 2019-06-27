@@ -46,7 +46,7 @@ pipeline
         }
         stage('docker image push'){
             steps{
-                sh 'sudo docker push siva1258/websocket-${BUILD_NUMBER}'
+                sh 'sudo docker push siva1258/websocket:${BUILD_NUMBER}'
             }
         }
         stage('helm chart') {
